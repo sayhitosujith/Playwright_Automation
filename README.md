@@ -1,4 +1,4 @@
-# Playwright_Automation
+![image](https://github.com/user-attachments/assets/4d1c7a6a-66c0-44ba-be97-3aac6f70edca)![image](https://github.com/user-attachments/assets/f514e9e8-c467-41a0-b002-3088faf1b2ef)# Playwright_Automation
 Application Automation with Playwright Technology
 
 -- Commands --
@@ -12,6 +12,7 @@ Application Automation with Playwright Technology
 7. To run 2 specific files npx playwright test .\tests\example.spec.js .\tests\example.spec.js
 8. To run 1 specific files which has 'example' - npx playwright test example
 9. To run tests with title - npx playwright test -g "has title"
+10. To run on a specific browser - npx playwright test --project=firefox
 
 
 Report structure
