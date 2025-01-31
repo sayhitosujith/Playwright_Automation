@@ -15,6 +15,7 @@ Application Automation with Playwright Technology
 10. To run on a specific browser - npx playwright test --project=firefox
 11. To run on headed/physical browser - npx playwright test --project=firefox --headed
 12. To debug - npx playwright test --project=firefox --debug
+13. To debug specific test file - npx playwright test --project=firefox --debug
 
 Report structure
 ![image](https://github.com- user-attachments/assets/ee770660-2faa-4446-a195-b4c16cf507cc)
