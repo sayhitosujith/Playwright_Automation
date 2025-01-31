@@ -12,3 +12,7 @@ Application Automation with Playwright Technology
 7. To run 2 specific files npx playwright test .\tests\example.spec.js .\tests\example.spec.js
 8. To run 1 specific files which has 'example' - npx playwright test example
 9. To run tests with title - npx playwright test -g "has title"
+
+
+Report structure
+![image](https://github.com/user-attachments/assets/ee770660-2faa-4446-a195-b4c16cf507cc)
