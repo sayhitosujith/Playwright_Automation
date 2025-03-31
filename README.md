@@ -1,6 +1,6 @@
 Application Automation with Playwright Technology
 
--- Commands --
+-- Commands -- 
 
 To Install playwright - npm init playwright@latest
 To Excecute tests - npx playwright test
@@ -15,4 +15,5 @@ To run on a specific browser - npx playwright test --project=firefox
 To run on headed/physical browser - npx playwright test --project=firefox --headed
 To debug - npx playwright test --project=firefox --debug
 To debug specific test file - npx playwright test --project=firefox --debug
-Report structure ![image](https://github.com- user-attachments/assets/ee770660-2faa-4446-a195-b4c16cf507cc)
+
+Report structure ![image](https://github.com- user-attachments/assets/ee770660-2faa-4446-a195-b4c16cf507cc)git stat
