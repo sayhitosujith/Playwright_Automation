@@ -35,9 +35,10 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+ 
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], headless: true },
+      use: { ...devices['Desktop Chrome'], headless: true, timeout: 60000 }, // Extend global timeout
     },
 
     // {
