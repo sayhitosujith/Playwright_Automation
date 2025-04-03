@@ -1,21 +1,15 @@
-name: Playwright Tests
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
-    branches:
-      - master
-  schedule:
-    - cron: '0 9 * * *'  # Runs at 7:30 AM IST daily (UTC 2:00 AM)
-    - cron: '30 13 * * *' # Runs at 7:00 PM IST daily (UTC 1:30 PM)
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:1.51.1-focal
+      image: mcr.microsoft.com/playwright:v1.51.0-focal
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
