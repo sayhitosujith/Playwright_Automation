@@ -32,16 +32,12 @@ test('has title', async ({ page }) => {
   const viewProfile = page.locator("//a[normalize-space()='View profile']")
  
   const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
-  await page.waitForTimeout(8000)
 
   const ResumeHeadline = page.locator("//div[@class='card mt15']//div//span[@class='edit icon'][normalize-space()='editOneTheme']");
-  await page.waitForTimeout(8000)
 
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']")
-  await page.waitForTimeout(8000)
 
   const SaveButton = page.locator("//button[normalize-space()='Save']")
-  await page.waitForTimeout(8000)
 
 
   await UserName.fill("sayhitosujith@gmail.com")
