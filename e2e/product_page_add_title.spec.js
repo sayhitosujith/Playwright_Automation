@@ -1,34 +1,39 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://www.naukri.com/nlogin/login?utm_source=google&utm_medium=cpc&utm_campaign=Brand&gad_source=1&gclid=CjwKCAjwo6GyBhBwEiwAzQTmc34DfBd9dNPPn_R_W3UozmHxoGFxQRepNJgOcFPHLMUoYh');
-  
-  const UserName = page.locator("[id='usernameField']");
-  const Password = page.locator('[id="passwordField"]');
-  const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']");
-  const viewProfile = page.locator("//a[normalize-space()='View profile']");
-  const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
-  const ResumeHeadline = page.locator("//div[@class='card mt15']//div//span[@class='edit icon'][normalize-space()='editOneTheme']");
-  const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']");
-  const SaveButton = page.locator("//button[normalize-space()='Save']");
+test('Login and update resume headline', async ({ page }) => {
+  // Go to login page
+  await page.goto('https://www.naukri.com/nlogin/login');
 
-  await UserName.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
-  await UserName.fill("sayhitosujith@gmail.com"); // Fill the username field
-  
-  await Password.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
-  await Password.fill("Qw@12345678"); // Fill the password field
-  
+  // Define locators
+  const UserName = page.locator('#usernameField');
+  const Password = page.locator('#passwordField');
+  const LoginButton = page.getByRole('button', { name: 'Login' }); // More reliable
+  const viewProfile = page.getByRole('link', { name: 'View profile' });
+  const ResumeHeadline = page.locator('.edit.icon'); // Simplified
+  const ClearText = page.locator('#resumeHeadlineTxt');
+  const SaveButton = page.getByRole('button', { name: 'Save' });
+
+  // Login Process
+  await UserName.waitFor({ state: 'visible' });
+  await UserName.fill("sayhitosujith@gmail.com");
+  await Password.fill("Qw@12345678");
   await LoginButton.click();
-  
-  await page.waitForTimeout(5000);
-  await viewProfile.click();
-  await page.waitForTimeout(5000);
-  await page.mouse.wheel(0, 500); // Scroll down 500 pixels
 
+  // Wait for successful login
+  await page.waitForURL('https://www.naukri.com/mnjuser/profile', { timeout: 60000 });
+
+  // Verify login success
+  await expect(page).toHaveURL('https://www.naukri.com/mnjuser/profile');
+
+  // Navigate to Profile
+  await viewProfile.click();
+  await ResumeHeadline.waitFor({ state: 'visible' });
   await ResumeHeadline.click();
-  await ClearText.clear();
+
+  // Update Resume Headline
   await ClearText.fill("SDET-Professional with Experience of 6.8 years.");
   await SaveButton.click();
-  await page.waitForTimeout(5000);
+
+  // Verify update success (You can add assertions here)
 });
