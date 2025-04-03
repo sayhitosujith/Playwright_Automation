@@ -13,8 +13,8 @@ test('Login and update resume headline', async ({ page, context }) => {
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']");
 
   // Ensure elements are visible before interacting
-  await UserName.waitFor({ state: 'visible', timeout: 60000 });
-  await Password.waitFor({ state: 'visible', timeout: 60000 });
+  await UserName.waitFor({ state: 'visible'});
+  await Password.waitFor({ state: 'visible' });
 
   // Fill credentials and login
   await UserName.fill("sayhitosujith@gmail.com");
