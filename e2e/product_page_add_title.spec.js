@@ -18,8 +18,8 @@ test('has title', async ({ page }) => {
 
   await page.goto('https://www.naukri.com/nlogin/login?utm_source=google&utm_medium=cpc&utm_campaign=Brand&gad_source=1&gclid=CjwKCAjwo6GyBhBwEiwAzQTmc34DfBd9dNPPn_R_W3UozmHxoGFxQRepNJgOcFPHLMUoYhEwNErtOxoC6a0QAvD_BwE&gclsrc=aw.ds');
 
-  const UserName = page.locator('[id="usernameField"]')
-  const Password = page.locator('[id="passwordField"]')
+  const UserName = page.locator("//input[@id='usernameField']");
+  const Password = page.locator("//input[@id='passwordField']");
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
   const viewProfile = page.locator("//a[normalize-space()='View profile']") 
   const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
