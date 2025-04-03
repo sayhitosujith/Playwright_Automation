@@ -1,41 +1,32 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test('Login and update resume headline', async ({ page }) => {
-  // Open login page
-  await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'domcontentloaded' });
+test('Login and update resume headline', async ({ page, context }) => {
+  await context.tracing.start({ screenshots: true, snapshots: true });
 
-  // Pause to ensure page loads completely
-  await page.waitForTimeout(5000); // Temporary debug step
-
-  // Debug: Capture screenshot to check if the field is present
-  await page.screenshot({ path: 'debug-page.png', fullPage: true });
+  // Open login page with better waiting
+  await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'networkidle' });
 
   // Define locators
-  const UserName = await page.waitForSelector("//input[@id='usernameField']", { state: 'visible', timeout: 60000 });
-  const Password = await page.waitForSelector("//input[@id='passwordField']", { state: 'visible', timeout: 60000 });
-
+  const UserName = page.locator("//input[@id='usernameField']");
+  const Password = page.locator("//input[@id='passwordField']");
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']");
 
-  // Check if the username field is present
-  const isUserNameVisible = await UserName.isVisible();
-  console.log(`Username field visible: ${isUserNameVisible}`);
+  // Ensure elements are visible before interacting
+  await UserName.waitFor({ state: 'visible', timeout: 60000 });
+  await Password.waitFor({ state: 'visible', timeout: 60000 });
 
-  if (!isUserNameVisible) {
-    throw new Error("Username field is not visible. Check selector or page loading issue.");
-  }
-
-  // Login Process
+  // Fill credentials and login
   await UserName.fill("sayhitosujith@gmail.com");
   await Password.fill("Qw@12345678");
   await LoginButton.click();
 
-  // Wait for successful login
-  await page.waitForLoadState('networkidle');
+  // Wait for profile page to load
+  //await page.waitForURL(/profile/, { timeout: 60000 });
 
-  // Debug: Capture screenshot after login
+  // Debug screenshot after login
   await page.screenshot({ path: 'debug-after-login.png', fullPage: true });
 
-  // Verify login success
-  //await expect(page).toHaveURL(/profile/);
+  // Stop tracing
+  await context.tracing.stop({ path: 'trace.zip' });
 });
