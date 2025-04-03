@@ -32,6 +32,7 @@ test('has title', async ({ page }) => {
   await UserName.fill("sayhitosujith@gmail.com")
   await Password.fill("Qw@12345678")
   await LoginButton.click()
+  
   await page.waitForTimeout(5000)
   await viewProfile.click()
   await page.waitForTimeout(5000)
