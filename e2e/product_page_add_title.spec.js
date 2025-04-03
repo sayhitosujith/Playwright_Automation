@@ -6,7 +6,7 @@ test('Login and update resume headline', async ({ page, context }) => {
 
   // Open login page with better waiting
   await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'networkidle' });
-
+  await page.waitForTimeout(5000)
   // Define locators
   const UserName = page.locator("//input[@id='usernameField']");
   const Password = page.locator("//input[@id='passwordField']");
