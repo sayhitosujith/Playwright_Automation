@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 test('Login and update resume headline', async ({ page }) => {
   // Open login page
-  await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'domcontentloaded' });
+  await page.goto('https://www.naukri.com/nlogin/login?utm_source=google&utm_medium=cpc&utm_campaign=Brand&gad_source=1&gclid=CjwKCAjwo6GyBhBwEiwAzQTmc34DfBd9dNPPn_R_W3UozmHxoGFxQRepNJgOcFPHLMUoYhEwNErtOxoC6a0QAvD_BwE&gclsrc=aw.ds', { waitUntil: 'domcontentloaded' });
 
   // Pause to ensure page loads completely
   await page.waitForTimeout(5000); // Temporary debug step
