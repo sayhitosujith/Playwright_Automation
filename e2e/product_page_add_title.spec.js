@@ -12,8 +12,9 @@ test('Login and update resume headline', async ({ page }) => {
   await page.screenshot({ path: 'debug-page.png', fullPage: true });
 
   // Define locators
-  const UserName = page.locator("//input[@id='usernameField']");
-  const Password = page.locator("//input[@id='passwordField']");
+  const UserName = await page.waitForSelector("//input[@id='usernameField']", { state: 'visible', timeout: 60000 });
+  const Password = await page.waitForSelector("//input[@id='usernameField']", { state: 'visible', timeout: 60000 });
+
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']");
 
   // Check if the username field is present
