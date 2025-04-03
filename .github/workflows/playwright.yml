@@ -13,6 +13,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container : 
+      image: mcr.microsoft.com/playwright:v1.51.1-focal
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -23,11 +25,16 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    - name: Run Playwright tests in headed mode
-      run: xvfb-run --auto-servernum npx playwright test
+    
 
     - name: Run Playwright tests
-      run: npm run test
+      run: |
+        echo "Installing dependencies from lockfile"
+        npm ci
+        echo "Run Playwright tests"
+        npm run test:ci
+
+
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
