@@ -16,14 +16,14 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.51.1-focal  # Using Playwright's Docker container
+      image: mcr.microsoft.com/playwright:focal  # ✅ Fixed Playwright Docker image
 
     steps:
       - name: 🛒 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # ✅ Updated to latest version
 
       - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4  # ✅ Updated to latest version
         with:
           node-version: lts/*
 
@@ -34,11 +34,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: 🚀 Run Playwright tests
-        run: |
-          echo "Installing dependencies from lockfile"
-          npm ci
-          echo "Running Playwright tests"
-          npm run test:ci
+        run: npm run test:ci
         env:
           CI: true
 
