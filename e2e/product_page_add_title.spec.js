@@ -14,7 +14,7 @@ test('Login and update resume headline', async ({ page }) => {
   // Define locators
   const UserName = page.locator('#usernameField');
   const Password = page.locator('#passwordField');
-  const LoginButton = page.locator('button:has-text("Login")');
+  const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
 
   // Check if the username field is present
   const isUserNameVisible = await UserName.isVisible();
