@@ -28,7 +28,6 @@ test('has title', async ({ page }) => {
   await page.waitForTimeout(8000)
 
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
-  await page.waitForTimeout(8000)
   
   const viewProfile = page.locator("//a[normalize-space()='View profile']")
   await page.waitForTimeout(8000)
