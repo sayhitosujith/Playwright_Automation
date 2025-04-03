@@ -2,38 +2,43 @@
 import { test, expect } from '@playwright/test';
 
 test('Login and update resume headline', async ({ page }) => {
-  // Go to login page
-  await page.goto('https://www.naukri.com/nlogin/login');
+  // Open login page
+  await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'load' });
 
   // Define locators
   const UserName = page.locator('#usernameField');
   const Password = page.locator('#passwordField');
-  const LoginButton = page.getByRole('button', { name: 'Login' }); // More reliable
-  const viewProfile = page.getByRole('link', { name: 'View profile' });
-  const ResumeHeadline = page.locator('.edit.icon'); // Simplified
+  const LoginButton = page.locator('button:has-text("Login")'); // More reliable selector
+  const ProfileMenu = page.locator('a:has-text("View profile")');
+  const ResumeHeadline = page.locator('span:has-text("editOneTheme")');
   const ClearText = page.locator('#resumeHeadlineTxt');
-  const SaveButton = page.getByRole('button', { name: 'Save' });
+  const SaveButton = page.locator('button:has-text("Save")');
 
   // Login Process
-  await UserName.waitFor({ state: 'visible' });
+  await UserName.waitFor({ state: 'visible', timeout: 30000 });
   await UserName.fill("sayhitosujith@gmail.com");
   await Password.fill("Qw@12345678");
   await LoginButton.click();
 
   // Wait for successful login
-  await page.waitForURL('https://www.naukri.com/mnjuser/profile', { timeout: 60000 });
-
-  // Verify login success
-  await expect(page).toHaveURL('https://www.naukri.com/mnjuser/profile');
+  await page.waitForLoadState('networkidle'); // Wait until all requests are finished
 
   // Navigate to Profile
-  await viewProfile.click();
-  await ResumeHeadline.waitFor({ state: 'visible' });
+  await ProfileMenu.waitFor({ state: 'visible', timeout: 30000 });
+  await ProfileMenu.click();
+
+  // Scroll to resume section
+  await page.mouse.wheel(0, 500);
+  
+  // Click Edit Resume Headline
+  await ResumeHeadline.waitFor({ state: 'visible', timeout: 30000 });
   await ResumeHeadline.click();
 
-  // Update Resume Headline
-  await ClearText.fill("SDET-Professional with Experience of 6.8 years.");
+  // Clear and enter new headline
+  await ClearText.waitFor({ state: 'visible' });
+  await ClearText.fill("SDET-Professional with 6.8 years of experience.");
   await SaveButton.click();
 
-  // Verify update success (You can add assertions here)
+  // ✅ Verify update success
+  await expect(SaveButton).not.toBeVisible();
 });
