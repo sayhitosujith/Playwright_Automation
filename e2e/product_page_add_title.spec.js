@@ -19,9 +19,14 @@ test('has title', async ({ page }) => {
   // await expect(basketCounter).toHaveText("1")
 
   await page.goto('https://www.naukri.com/nlogin/login?utm_source=google&utm_medium=cpc&utm_campaign=Brand&gad_source=1&gclid=CjwKCAjwo6GyBhBwEiwAzQTmc34DfBd9dNPPn_R_W3UozmHxoGFxQRepNJgOcFPHLMUoYhEwNErtOxoC6a0QAvD_BwE&gclsrc=aw.ds');
+  await page.waitForTimeout(8000)
 
   const UserName = page.locator('[id="usernameField"]')
+  await page.waitForTimeout(8000)
+
   const Password = page.locator('[id="passwordField"]')
+  await page.waitForTimeout(8000)
+  
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
   const viewProfile = page.locator("//a[normalize-space()='View profile']") 
   const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
@@ -32,7 +37,7 @@ test('has title', async ({ page }) => {
   await UserName.fill("sayhitosujith@gmail.com")
   await Password.fill("Qw@12345678")
   await LoginButton.click()
-  
+
   await page.waitForTimeout(5000)
   await viewProfile.click()
   await page.waitForTimeout(5000)
