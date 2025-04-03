@@ -23,8 +23,8 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    - name: Run Playwright tests
-      run: npx playwright test --headless
+    - name: Run Playwright tests in headed mode
+      run: xvfb-run --auto-servernum npx playwright test
 
     - name: Run Playwright tests
       run: npm run test
