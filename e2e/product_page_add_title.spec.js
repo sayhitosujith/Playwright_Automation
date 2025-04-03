@@ -14,10 +14,10 @@ test('has title', async ({ page }) => {
   const SaveButton = page.locator("//button[normalize-space()='Save']");
 
   await UserName.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
-  await UserName.fill("sayhitosujith@gmail.com", { timeout: 60000 }); // Increase timeout to 60 seconds
+  await UserName.fill("sayhitosujith@gmail.com"); // Fill the username field
   
   await Password.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
-  await Password.fill("Qw@12345678", { timeout: 60000 }); // Increase timeout to 60 seconds
+  await Password.fill("Qw@12345678"); // Fill the password field
   
   await LoginButton.click();
   
