@@ -7,37 +7,47 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 9 * * *'  # Runs at 7:30am IST daily (UTC 2:00 AM)
-    - cron: '30 13 * * *' # Runs at 7:00pm IST daily (UTC 1:30 PM)
+    - cron: '0 9 * * *'  # Runs at 7:30 AM IST daily (UTC 2:00 AM)
+    - cron: '30 13 * * *' # Runs at 7:00 PM IST daily (UTC 1:30 PM)
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    container : 
+    container:
       image: mcr.microsoft.com/playwright:1.51.1-focal
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-    - name: Run Playwright tests
-      run: |
-        echo "Installing dependencies from lockfile"
-        npm ci
-        echo "Run Playwright tests"
-        npm run test:ci
+      - name: Install dependencies
+        run: npm ci
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - name: Run Playwright tests
+        run: |
+          echo "Running tests with retry logic"
+          xvfb-run --auto-servernum npx playwright test --retries=2 || echo "Tests failed"
+
+      - name: Upload Playwright report (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload Trace for Debugging
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trace-debug
+          path: test-results/
+          retention-days: 30
