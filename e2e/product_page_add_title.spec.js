@@ -19,15 +19,13 @@ test('has title', async ({ page }) => {
   await Password.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
   await Password.fill("Qw@12345678", { timeout: 60000 }); // Increase timeout to 60 seconds
   
-  await LoginButton.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
   await LoginButton.click();
   
   await page.waitForTimeout(5000);
-  await viewProfile.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
   await viewProfile.click();
   await page.waitForTimeout(5000);
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
-  await ResumeHeadline.waitFor({ state: 'visible', timeout: 60000 }); // Wait for the element to be visible
+
   await ResumeHeadline.click();
   await ClearText.clear();
   await ClearText.fill("SDET-Professional with Experience of 6.8 years.");
