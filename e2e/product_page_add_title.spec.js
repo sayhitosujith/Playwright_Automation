@@ -30,7 +30,6 @@ test('has title', async ({ page }) => {
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
   
   const viewProfile = page.locator("//a[normalize-space()='View profile']")
-  await page.waitForTimeout(8000)
  
   const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
   await page.waitForTimeout(8000)
