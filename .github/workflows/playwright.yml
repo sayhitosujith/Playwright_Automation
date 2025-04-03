@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:1.51.1-focal  # Using Playwright's Docker container
+      image: mcr.microsoft.com/playwright:v1.51.1-focal  # Using Playwright's Docker container
 
     steps:
       - name: 🛒 Checkout repository
