@@ -26,8 +26,10 @@ test('has title', async ({ page }) => {
 
   const Password = page.locator('[id="passwordField"]')
   await page.waitForTimeout(8000)
-  
+
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
+  await page.waitForTimeout(8000)
+  
   const viewProfile = page.locator("//a[normalize-space()='View profile']") 
   const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
   const ResumeHeadline = page.locator("//div[@class='card mt15']//div//span[@class='edit icon'][normalize-space()='editOneTheme']");
