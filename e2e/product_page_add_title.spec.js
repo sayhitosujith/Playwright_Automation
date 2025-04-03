@@ -1,33 +1,47 @@
+
+
+// @ts-check
 import { test, expect } from '@playwright/test';
 
-test('Login and update resume headline', async ({ page }) => {
-  // Wait until network requests are idle
-  await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'networkidle' });
+test('has title', async ({ page }) => {
+  // await page.goto('http://localhost:2221/');
 
-  // Define locators
-  const UserName = page.locator('input#usernameField');
-  const Password = page.locator('input#passwordField');
-  const LoginButton = page.locator('button:has-text("Login")');
+  // const addToBasketButton = page.locator('[data-qa="product-button"]').first()
+  // const basketCounter = page.locator('[data-qa="header-basket-count"]')
 
-  // Debugging: Check if the field is visible
-  const isUserNameVisible = await UserName.isVisible();
-  console.log(`Username field visible? ${isUserNameVisible}`);
+  // await addToBasketButton.waitFor()
+  // await expect(addToBasketButton).toHaveText("Add to Basket")
+  // await expect(basketCounter).toHaveText("0")
 
-  if (!isUserNameVisible) {
-    throw new Error("Username field is not visible. Check selector or page loading issue.");
-  }
+  // await addToBasketButton.click()
 
-  // Ensure fields are visible before interacting
-  await expect(UserName).toBeVisible({ timeout: 60000 });
-  await expect(Password).toBeVisible();
-  await expect(LoginButton).toBeVisible();
+  // await expect(addToBasketButton).toHaveText("Remove from Basket")
+  // await expect(basketCounter).toHaveText("1")
 
-  // Login Process
-  await UserName.fill("sayhitosujith@gmail.com");
-  await Password.fill("Qw@12345678");
-  await LoginButton.click();
+  await page.goto('https://www.naukri.com/nlogin/login?utm_source=google&utm_medium=cpc&utm_campaign=Brand&gad_source=1&gclid=CjwKCAjwo6GyBhBwEiwAzQTmc34DfBd9dNPPn_R_W3UozmHxoGFxQRepNJgOcFPHLMUoYhEwNErtOxoC6a0QAvD_BwE&gclsrc=aw.ds');
 
-  // Wait for profile page to load
-  await page.waitForURL(/profile/, { timeout: 60000 });
-  await expect(page).toHaveURL(/profile/);
-});
+  const UserName = page.locator('[id="usernameField"]')
+  const Password = page.locator('[id="passwordField"]')
+  const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']")
+  const viewProfile = page.locator("//a[normalize-space()='View profile']") 
+  const fileInput = page.locator('[class="dummyUpload typ-14Bold"]');
+  const ResumeHeadline = page.locator("//div[@class='card mt15']//div//span[@class='edit icon'][normalize-space()='editOneTheme']");
+  const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']")
+  const SaveButton = page.locator("//button[normalize-space()='Save']")
+
+  await UserName.fill("sayhitosujith@gmail.com")
+  await Password.fill("Qw@12345678")
+  await LoginButton.click()
+  await page.waitForTimeout(5000)
+  await viewProfile.click()
+  await page.waitForTimeout(5000)
+  await page.mouse.wheel(0, 500); // Scroll down 500 pixels
+  // await fileInput.click()
+  // await fileInput.setInputFiles("C:/Users/Sujith/Downloads/Resume.pdf");
+    // await page.waitForTimeout(5000)
+    await ResumeHeadline.click()
+    await ClearText.clear()
+    await ClearText.fill("SDET-Professional with Experience of 6.8 years.")
+    await SaveButton.click()
+    await page.waitForTimeout(5000)
+})
