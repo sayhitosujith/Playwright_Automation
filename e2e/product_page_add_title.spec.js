@@ -16,7 +16,7 @@ test('has title', async ({ page }) => {
   await Password.fill("Qw@12345678");
   await LoginButton.click();
 
-
+  await viewProfile.waitFor({ state: 'visible', timeout });
   await viewProfile.click();
 
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
