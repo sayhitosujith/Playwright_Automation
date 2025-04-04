@@ -38,7 +38,7 @@ export default defineConfig({
  
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], headless: true, timeout: 60000 }, // Extend global timeout
+      use: { ...devices['Desktop Chrome'], headless: true, timeout: 3000 }, // Extend global timeout
     },
 
     // {
