@@ -12,7 +12,6 @@ test('has title', async ({ page }) => {
   const SaveButton = page.locator("//button[normalize-space()='Save']");
 
   const timeout = 30000; 
-  await UserName.waitFor({ timeout });
   await UserName.fill("sayhitosujith@gmail.com");
   await Password.fill("Qw@12345678");
   await LoginButton.click();
