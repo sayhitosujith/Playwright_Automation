@@ -10,14 +10,10 @@ test('has title', async ({ page }) => {
   const ResumeHeadline = page.locator("//div[@class='card mt15']//div//span[@class='edit icon'][normalize-space()='editOneTheme']");
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']");
   const SaveButton = page.locator("//button[normalize-space()='Save']");
-
-  // Increase timeout for elements
   const timeout = 30000; // 60 seconds
 
   await UserName.fill("sayhitosujith@gmail.com");
-
   await Password.fill("Qw@12345678");
-
   await LoginButton.click();
 
   // Wait for navigation to complete
