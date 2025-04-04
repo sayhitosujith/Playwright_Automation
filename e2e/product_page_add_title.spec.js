@@ -34,7 +34,9 @@ test('has title', async ({ page }) => {
 
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']")
 
-  const SaveButton = page.locator("//button[normalize-space()='Save']")
+  const SaveButton = page.locator("//button[normalize-space()='Save']") 
+
+  const UpdatedDate = page.locator("//span[@name='Experience']")
 
   await UserName.fill("sayhitosujith@gmail.com")
 
@@ -54,4 +56,6 @@ test('has title', async ({ page }) => {
     await ClearText.fill("SDET-Professional with Experience of 6.8 years.")
     await SaveButton.click()
     await page.waitForTimeout(5000)
+    UpdatedDate.getByText.toString()
+    console.log(UpdatedDate)
 })
