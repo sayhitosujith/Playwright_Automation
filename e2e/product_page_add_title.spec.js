@@ -12,7 +12,7 @@ test('has title', async ({ page }) => {
   const SaveButton = page.locator("//button[normalize-space()='Save']");
 
   // Increase timeout for elements
-  const timeout = 60000; // 60 seconds
+  const timeout = 30000; // 60 seconds
 
   await UserName.waitFor({ timeout });
   await UserName.fill("sayhitosujith@gmail.com");
