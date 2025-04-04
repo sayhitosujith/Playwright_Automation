@@ -10,7 +10,8 @@ test('has title', async ({ page }) => {
   const ResumeHeadline = page.locator("//div[@class='card mt15']//div//span[@class='edit icon'][normalize-space()='editOneTheme']");
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']");
   const SaveButton = page.locator("//button[normalize-space()='Save']");
-
+  const timeout = 30000; // 60 seconds
+  await viewProfile.waitFor({ timeout });
   await UserName.fill("sayhitosujith@gmail.com");
   await Password.fill("Qw@12345678");
   await LoginButton.click();
@@ -18,6 +19,7 @@ test('has title', async ({ page }) => {
   // Wait for navigation to complete
   await page.waitForLoadState('networkidle');
 
+ 
   await viewProfile.click();
 
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
