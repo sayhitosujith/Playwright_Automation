@@ -54,7 +54,6 @@ test('has title', async ({ page }) => {
     await ClearText.clear()
     await ClearText.fill("SDET-Professional with Experience of 6.8 years.")
     await SaveButton.click()
-    await page.waitForTimeout(5000)
     UpdatedDate.getByText.toString()
     console.log(UpdatedDate)
 })
