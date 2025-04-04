@@ -44,9 +44,8 @@ test('has title', async ({ page }) => {
 
   await LoginButton.click()
 
-  await page.waitForTimeout(5000)
   await viewProfile.click()
-  await page.waitForTimeout(5000)
+ // await page.waitForTimeout(5000)
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
   // await fileInput.click()
   // await fileInput.setInputFiles("C:/Users/Sujith/Downloads/Resume.pdf");
