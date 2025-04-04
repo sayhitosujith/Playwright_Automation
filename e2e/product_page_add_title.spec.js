@@ -11,12 +11,11 @@ test('has title', async ({ page }) => {
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']");
   const SaveButton = page.locator("//button[normalize-space()='Save']");
 
-  const timeout = 1000; 
-  await UserName.fill("sayhitosujith@gmail.com", { timeout });
+  await UserName.fill("sayhitosujith@gmail.com", { timeout: 1000 });
   await Password.fill("Qw@12345678");
   await LoginButton.click();
 
-  await viewProfile.waitFor({ state: 'visible', timeout });
+  await viewProfile.waitFor({ state: 'visible', timeout:30000 });
   await viewProfile.click();
 
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
