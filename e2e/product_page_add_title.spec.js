@@ -14,13 +14,10 @@ test('has title', async ({ page }) => {
   // Increase timeout for elements
   const timeout = 30000; // 60 seconds
 
-  await UserName.waitFor({ timeout });
   await UserName.fill("sayhitosujith@gmail.com");
 
-  await Password.waitFor({ timeout });
   await Password.fill("Qw@12345678");
 
-  await LoginButton.waitFor({ timeout });
   await LoginButton.click();
 
   // Wait for navigation to complete
@@ -31,13 +28,10 @@ test('has title', async ({ page }) => {
 
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
 
-  await ResumeHeadline.waitFor({ timeout });
   await ResumeHeadline.click();
 
-  await ClearText.waitFor({ timeout });
   await ClearText.clear();
   await ClearText.fill("SDET-Professional with Experience of 6.8 years.");
 
-  await SaveButton.waitFor({ timeout });
   await SaveButton.click();
 });
