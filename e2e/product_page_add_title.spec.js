@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('has title', async ({ page }) => {
   await page.goto('https://www.naukri.com/nlogin/login?utm_source=google&utm_medium=cpc&utm_campaign=Brand&gad_source=1&gclid=CjwKCAjwo6GyBhBwEiwAzQTmc34DfBd9dNPPn_R_W3UozmHxoGFxQRepNJgOcFPHLMUoYhkc3FFd1BoCq3kQAvD_BwE');
 
-  const UserName = page.locator('[id="usernameField"]');
+  const UserName = page.getByPlaceholder("Enter Email ID / Username"); 
   const Password = page.locator('[id="passwordField"]');
   const LoginButton = page.locator("//button[@class='waves-effect waves-light btn-large btn-block btn-bold blue-btn textTransform']");
   const viewProfile = page.locator("//a[normalize-space()='View profile']");
@@ -11,7 +11,7 @@ test('has title', async ({ page }) => {
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']");
   const SaveButton = page.locator("//button[normalize-space()='Save']");
 
-  const timeout = 10000; 
+  const timeout = 60000 ; 
   await UserName.fill("sayhitosujith@gmail.com", { timeout });
   await Password.fill("Qw@12345678");
   await LoginButton.click();
