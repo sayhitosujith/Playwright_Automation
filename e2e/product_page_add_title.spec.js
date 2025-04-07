@@ -17,13 +17,10 @@ test('has title', async ({ page }) => {
 
   await viewProfile.waitFor({ state: 'visible', timeout:30000 });
   await viewProfile.click();
-
   await page.mouse.wheel(0, 500); // Scroll down 500 pixels
-
   await ResumeHeadline.click();
-
   await ClearText.clear();
-  await ClearText.fill("SDET-Professional with Experience of 6.8 years."),{ timeout:40000 };
+  await ClearText.fill("SDET-Professional with Experience of 6.8 years."),{ timeout:1000 };
 
   await SaveButton.click();
 });
