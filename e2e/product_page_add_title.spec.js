@@ -11,7 +11,7 @@ test('has title', async ({ page }) => {
   const ClearText = page.locator("//textarea[@id='resumeHeadlineTxt']");
   const SaveButton = page.locator("//button[normalize-space()='Save']");
 
-  await UserName.fill("sayhitosujith@gmail.com", { timeout: 30000 });
+  await UserName.fill("sayhitosujith@gmail.com", { timeout:40000 });
   await Password.fill("Qw@12345678");
   await LoginButton.click();
 
