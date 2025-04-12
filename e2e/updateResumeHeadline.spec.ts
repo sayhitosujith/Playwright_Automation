@@ -14,5 +14,5 @@ test('Update Resume Headline in Naukri', async ({ page }) => {
   await loginPage.login("sayhitosujith@gmail.com", "Qw@12345678");
 
   await profilePage.goToProfile();
-  await profilePage.updateHeadline("SDET-Professional with Experience of 6.8 years. serving notice period looking out for QA/SDET Lead roles");
+  await profilePage.updateHeadline("SDET-Professional with Experience of 6.8 years. serving notice period . looking out for senior QA/SDET , Lead roles");
 });
