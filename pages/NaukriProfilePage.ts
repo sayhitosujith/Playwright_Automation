@@ -11,7 +11,7 @@ export class NaukriProfilePage {
   constructor(page: Page) {
     this.page = page;
     this.viewProfile = page.locator("//a[normalize-space()='View profile']");
-    this.resumeHeadlineEdit = page.locator("//span[@class='edit icon'][normalize-space()='editOneTheme']");
+    this.resumeHeadlineEdit = page.locator("//div[@class='widgetHead']//span[@class='edit icon'][normalize-space()='editOneTheme']");
     this.headlineTextarea = page.locator("#resumeHeadlineTxt");
     this.saveButton = page.locator("//button[normalize-space()='Save']");
   }
@@ -24,7 +24,6 @@ export class NaukriProfilePage {
   async updateHeadline(newHeadline: string) {
     await this.page.mouse.wheel(0, 500);
     await this.resumeHeadlineEdit.click();
-    await this.headlineTextarea.fill('');
     await this.headlineTextarea.fill(newHeadline);
     await this.saveButton.click();
   }
