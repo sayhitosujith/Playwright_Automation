@@ -40,7 +40,12 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], headless: true}, // Extend global timeout
     },
-
+{
+  use: {
+    baseURL: 'https://sem1qa.exostartest.com/', // <-- Your URL here
+    viewport: { width: 1920, height: 1080 },
+  },
+}
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
